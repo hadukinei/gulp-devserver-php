@@ -1,0 +1,27 @@
+{
+  "name": "gulp-devserver-php",
+  "version": "0.0.1",
+  "main": "index.mjs",
+  "type": "module",
+  "author": "hadukinei",
+  "license": "ISC",
+  "description": "This is a [gulp] plugin forked from [gulp-connect-php]. Why I developed newly for because that plugin was not maintained it for a long time, and is having serious security issues.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gulp",
+    "php",
+    "server",
+    "connect"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hadukinei/gulp-devserver-php.git"
+  },
+  "dependencies": {
+    "binary-version-check": "^6.1.0",
+    "fs-extra": "^11.3.0",
+    "open": "^10.1.2"
+  }
+}
