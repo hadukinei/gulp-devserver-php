@@ -1,4 +1,6 @@
 // Load package
+/// <reference path="index.d.ts" />
+
 import childProcess from 'node:child_process';
 let spawn = childProcess.spawn
 
@@ -20,10 +22,10 @@ const Status = {
 const OPTIONS_SPAWN_OBJ = 'spawn'
 const OPTIONS_PHP_CLI_ARR = 'php_args'
 
-const _conn = {}
+let conn = {}
 
-_conn.OPTIONS_SPAWN_OBJ = OPTIONS_SPAWN_OBJ
-_conn.OPTIONS_PHP_CLI_ARR = OPTIONS_PHP_CLI_ARR
+conn.OPTIONS_SPAWN_OBJ = OPTIONS_SPAWN_OBJ
+conn.OPTIONS_PHP_CLI_ARR = OPTIONS_PHP_CLI_ARR
 
 
 // Main task
@@ -35,7 +37,7 @@ _conn.OPTIONS_PHP_CLI_ARR = OPTIONS_PHP_CLI_ARR
   * @param cb
   */
 const checkServer = (hostname, port, cb) => {
-  if ((!!_conn.status) || (_conn.status !== Status.STARTING)) return
+  if (conn.status !== Status.STARTING) return
 
   setTimeout(() => {
     http
@@ -58,7 +60,7 @@ const checkServer = (hostname, port, cb) => {
       }
     ).on('error', _ => {
       // back off after 1s
-      if (++_conn.checkServerTries > 20) {
+      if (++conn.checkServerTries > 20) {
         console.log('PHP server not started. Retrying...')
         return cb(false)
       }
@@ -75,10 +77,10 @@ const checkServer = (hostname, port, cb) => {
   * {@link http://php.net/manual/en/features.commandline.webserver.php}
   */
 const createInstance = opts => {
-  _conn.status = Status.NEW
-  _conn.checkServerTries = 0
-  _conn.workingPort = 8000
-  _conn.defaults = Object.assign({
+  conn.status = Status.NEW
+  conn.checkServerTries = 0
+  conn.workingPort = 8000
+  conn.defaults = Object.assign({
     port: 8000,
     hostname: '127.0.0.1',
     base: '.',
@@ -99,16 +101,16 @@ const createInstance = opts => {
 export const closeServer = cb => {
   if(!cb) cb = () => {}
 
-  if(!!_conn.loading) {
+  if(!!conn.loading) {
     setTimeout(() => {
       return closeServer(cb)
     }, 5)
     return
   }
 
-  if(_conn.childProcess) {
-    cb(_conn.childProcess.kill('SIGKILL'))
-    _conn.status = Status.FINISHED
+  if(conn.childProcess) {
+    cb(conn.childProcess.kill('SIGKILL'))
+    conn.status = Status.FINISHED
     return
   }
 
@@ -125,53 +127,49 @@ export const server = async (options, cb) => {
   if(!cb) cb = () => {}
   createInstance(options)
 
-  if(_conn.status.NEW && _conn.status !== Status.FINISHED) {
+  if(conn.status.NEW && conn.status !== Status.FINISHED) {
     return cb(new Error('You may not start a server that is starting or started.'))
   }
 
-  _conn = Object.assign({}, _conn.defaults, options)
+  conn = Object.assign({}, conn.defaults, options)
 
-  const host = `${_conn.hostname}:${_conn.port}`
-  let args = ['-S', host, '-t', _conn.base]
+  const host = `${conn.hostname}:${conn.port}`
+  let args = ['-S', host, '-t', conn.base]
 
-  if (!!_conn.ini) {
-    args.push('-c', _conn.ini)
+  if (!!conn.ini) {
+    args.push('-c', conn.ini)
   }
 
-  if (!!_conn.router) {
-    args.push(path.resolve(_conn.router))
+  if (!!conn.router) {
+    args.push(path.resolve(conn.router))
   }
 
-  /*
-  if (!!options.debug) {
-    spawn = function _debugSpawn(outerSpawn) {
-      return function debugSpawnWrapper(file, args, options) {
-        console.log('Invoking Spawn with:')
-        console.log(file)
-        console.log(args)
-        console.log(options)
-
-        return outerSpawn(file, args, options)
+  if(conn.debug){
+    spawn = function _ba(oSpawn) {
+      return function _bb(file, spawnArgs, conn) {
+        console.log('Invoking spawn with:')
+        console.log('- file: ', file)
+        console.log('- args: ', spawnArgs)
+        console.log('- conn: ', conn)
+        return oSpawn(file, spawnArgs, conn)
       }
     }(spawn)
   }
-  */
 
-  if (_conn.configCallback === null || _conn.configCallback === undefined) {
-    _conn.configCallback = (type, collection) => collection
+  if (conn.configCallback === null || conn.configCallback === undefined) {
+    conn.configCallback = (_, collection) => collection
   }
 
-  _conn.workingPort = _conn.port
-  console.log(1, _conn)
+  conn.workingPort = conn.port
 
   spawn = function _ca(oSpawn) {
     return function _cb(file, spawnArgs, spawnOptions) {
-      return oSpawn(file, _conn.configCallback(OPTIONS_PHP_CLI_ARR, spawnArgs) || spawnArgs, _conn.configCallback(OPTIONS_SPAWN_OBJ, spawnOptions) || spawnOptions)
+      return oSpawn(file, conn.configCallback(OPTIONS_PHP_CLI_ARR, spawnArgs) || spawnArgs, conn.configCallback(OPTIONS_SPAWN_OBJ, spawnOptions) || spawnOptions)
     }
   }(spawn)
 
   try {
-    await binaryVersionCheck(_conn.bin, '>=5.4')
+    await binaryVersionCheck(conn.bin, '>=5.4')
   } catch (err) {
     console.log(err)
     cb(err)
@@ -179,11 +177,26 @@ export const server = async (options, cb) => {
   }
 
   const checkPath = () => {
-    if(fs.existsSync(_conn.base)) {
-      _conn.status = Status.STARTING
-      _conn.childProcess = spawn(_conn.bin, args, {
+    if(fs.existsSync(conn.base)) {
+      conn.status = Status.STARTING
+      conn.childProcess = spawn(conn.bin, args, {
         cwd: '.',
-        stdio: _conn.stdio,
+      })
+      conn.childProcess.stdio = conn.stdio
+      conn.childProcess.stdout.setEncoding('utf8')
+      conn.childProcess.stderr.setEncoding('utf8')
+
+      if(conn.debug){
+        conn.childProcess.stderr.on('data', chunk => {
+          chunk = chunk.toString().replace(/\n/g, "\n ")
+          if(!/(Development Server .* started|[\d\:\.]+ (?:Accepted|Closing))/.test(chunk)){
+            console.log("- PHP log:\r\n", chunk)
+          }
+        })
+      }
+
+      conn.childProcess.on('exit', () => {
+        console.log("- PHP log:\r\n terminated.")
       })
     } else {
       setTimeout(() => {
@@ -195,10 +208,10 @@ export const server = async (options, cb) => {
 
   // check when the server is ready. tried doing it by listening
   // to the child process `data` event, but it's not triggered...
-  checkServer(_conn.hostname, _conn.port, () => {
-    _conn.status = Status.STARTED
-    if(_conn.open) {
-      open(`http://${host}${_conn.root}`)
+  checkServer(conn.hostname, conn.port, () => {
+    conn.status = Status.STARTED
+    if(conn.open){
+      open(`http://${conn.hostname}:${conn.port}${conn.root}`)
     }
     cb()
   })
@@ -209,5 +222,5 @@ export const server = async (options, cb) => {
   * Get working port number
   */
 export const port = () => {
-  return _conn.workingPort
+  return conn.workingPort
 }

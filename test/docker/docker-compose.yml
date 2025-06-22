@@ -1,0 +1,15 @@
+services:
+  # web (front-end)
+  web:
+    build: ./config/web
+    ports:
+      - '8880:80'
+    volumes:
+      - ./html/app:/var/www/html
+    environment:
+      WORDPRESS_DEBUG: 1
+      WP_ENVIRONMENT_TYPE: local
+    restart: always
+
+volumes:
+  node_modules:
