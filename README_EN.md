@@ -8,6 +8,7 @@
 ## Revision: in v1.0.1
 
 - Release launching.
+- Changed loading package from relative path to `npm i gulp-devserver-php`; that's to say that this package had available to retrieve from `npm`.
 
 
 ---

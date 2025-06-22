@@ -15,8 +15,8 @@ import pug from 'gulp-pug'
 
 // Live server
 import browserSync from 'browser-sync'
-import { server as phpServer } from '../../index.mjs'
-//import { server as phpServer } from 'gulp-devserver-php'
+//import { server as phpServer } from '../../index.mjs'
+import { server as phpServer } from 'gulp-devserver-php'
 
 
 /**

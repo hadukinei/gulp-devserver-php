@@ -6,8 +6,8 @@
 import { series } from 'gulp'
 
 // Live server
-import { server as phpServer, closeServer } from '../../index.mjs'
-//import { server as phpServer, closeServer } from 'gulp-devserver-php'
+//import { server as phpServer, closeServer } from '../../index.mjs'
+import { server as phpServer, closeServer } from 'gulp-devserver-php'
 
 
 /**

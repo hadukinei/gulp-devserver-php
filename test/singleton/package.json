@@ -10,7 +10,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "gulp": "^5.0.1"
+    "gulp": "^5.0.1",
+    "gulp-devserver-php": "^1.0.1"
   },
   "volta": {
     "node": "24.2.0"
