@@ -1,6 +1,6 @@
-// Load package
 /// <reference path="index.d.ts" />
 
+// Load package
 import childProcess from 'node:child_process';
 let spawn = childProcess.spawn
 

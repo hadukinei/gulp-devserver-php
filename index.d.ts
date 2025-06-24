@@ -1,11 +1,4 @@
-// put in as sibling with gulp-devserver-php/index.mjs
-/*
-declare module "binary-version-check" {
-  export default async function binaryVersionCheck(binary: string, semverRange: string, options?: object): null
-}
-*/
-
-// put in as sibling with gulp-devserver-php/index.mjs
+// declare module "binary-version-check" because there are no @type/*
 declare module "binary-version-check" {
   const binaryVersionCheck = async (
     binary: string,

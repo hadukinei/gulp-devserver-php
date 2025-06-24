@@ -1,6 +1,6 @@
 {
   "name": "gulp-devserver-php",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.mjs",
   "type": "module",
   "author": "hadukinei",
@@ -13,6 +13,7 @@
     "gulp",
     "php",
     "server",
+    "liveserver",
     "connect"
   ],
   "repository": {

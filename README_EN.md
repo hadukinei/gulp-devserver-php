@@ -5,10 +5,9 @@
 |[<img width="24" height="24" align="left" src="README.img/1f1ef-1f1f5.png" alt="🇯🇵"> 日本語](README.md)|[<img width="24" height="24" align="left" src="README.img/1f1fa-1f1f8.png" alt="🇺🇸"> English](README_EN.md)|
 
 
-## Revision: in v1.0.1
+## Revision: in v1.0.3
 
-- Release launching.
-- Changed loading package from relative path to `npm i gulp-devserver-php`; that's to say that this package had available to retrieve from `npm`.
+- Slightly revision.
 
 
 ---
@@ -31,7 +30,7 @@ But replacing dependency which have any security troubles positively.
 ## Indexes
 
 - [gulp-devserver-php](#gulp-devserver-php)
-  - [Revision: in v1.0.1](#revision-in-v101)
+  - [Revision: in v1.0.3](#revision-in-v103)
   - [Indexes](#indexes)
   - [Features](#features)
   - [Web development with using gulpfile.mjs only](#web-development-with-using-gulpfilemjs-only)
@@ -361,7 +360,7 @@ You can execute PHP directly.
 
 Create a project folder.
 
-`package.json`のscriptsメソッドを更新します。
+Change scripts method in `package.json`.
 
 ```json
 "scripts": {

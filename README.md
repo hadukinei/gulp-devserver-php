@@ -5,10 +5,9 @@
 |[<img width="24" height="24" align="left" src="README.img/1f1ef-1f1f5.png" alt="🇯🇵"> 日本語](README.md)|[<img width="24" height="24" align="left" src="README.img/1f1fa-1f1f8.png" alt="🇺🇸"> English](README_EN.md)|
 
 
-## 更新点: v1.0.2
+## 更新点: v1.0.3
 
-- リリース開始
-- testフォルダの読み込みを相対パスから`npm i gulp-devserver-php`に変更して、`npm`から正常に読み込めることを確認
+- 微調整
 
 
 ---
@@ -29,7 +28,7 @@
 ## 目次
 
 - [gulp-devserver-php](#gulp-devserver-php)
-  - [更新点: v1.0.2](#更新点-v102)
+  - [更新点: v1.0.3](#更新点-v103)
   - [目次](#目次)
   - [特徴](#特徴)
   - [gulpfile.mjs単体での利用](#gulpfilemjs単体での利用)
