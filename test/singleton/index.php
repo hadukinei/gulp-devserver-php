@@ -8,7 +8,7 @@ if($fp){
   fclose($fp);
 }
 
-error_log(json_encode([1, 2, 3, "あ"]), 4);
-error_log(json_encode(true), 4);
+var_dump([1, 2, 3]);
+error_log(json_encode([4, 5, 6]), 4);
 
 ?>

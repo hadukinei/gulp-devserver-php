@@ -82,6 +82,7 @@ const task_server = done => {
   if(isPHP){
     let options = {
       base: 'dist',
+      //debug: true,
 
       // Changing PHP version, set path to .exe and .ini directly
       //bin: "C:/php7.4.13/php.exe",

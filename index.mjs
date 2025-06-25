@@ -9,6 +9,7 @@ import http from 'node:http'
 import open from 'open'
 import binaryVersionCheck from 'binary-version-check';
 import fs from 'fs-extra'
+import chalk from 'chalk'
 
 
 // Define const value
@@ -87,7 +88,7 @@ const createInstance = opts => {
     open: false,
     bin: 'php',
     root: '/',
-    stdio: 'inherit',
+    stdio: 'pipe',
     configCallback: null,
     debug: false
   }, opts || {})
@@ -181,22 +182,27 @@ export const server = async (options, cb) => {
       conn.status = Status.STARTING
       conn.childProcess = spawn(conn.bin, args, {
         cwd: '.',
+        stdio: conn.stdio,
       })
-      conn.childProcess.stdio = conn.stdio
+
+      conn.childProcess.stdin.end()
       conn.childProcess.stdout.setEncoding('utf8')
       conn.childProcess.stderr.setEncoding('utf8')
 
       if(conn.debug){
         conn.childProcess.stderr.on('data', chunk => {
-          chunk = chunk.toString().replace(/\n/g, "\n ")
-          if(!/(Development Server .* started|[\d\:\.]+ (?:Accepted|Closing))/.test(chunk)){
-            console.log("- PHP log:\r\n", chunk)
-          }
+          chunk = chunk.replace(/[\r\n]$/, '').replace(/\n/g, "\n ").replace(/^(.*?)\[(.*?)\](.*)$/gm, "$1\t$2\t$3").split("\t")
+          chunk = `${chunk[0]}[${chalk.cyan.bold('PHP Log')} ${chalk.cyan(chunk[1])}]${chalk.yellow(chunk[2])}`
+          console.log(chunk)
         })
       }
 
       conn.childProcess.on('exit', () => {
-        console.log("- PHP log:\r\n terminated.")
+        console.log(` [${chalk.cyan.bold('PHP Log')}] ${chalk.yellow('terminated.')}`)
+      })
+
+      conn.childProcess.on('close', () => {
+        console.log(` [${chalk.cyan.bold('PHP Log')}] ${chalk.yellow('closed.')}`)
       })
     } else {
       setTimeout(() => {

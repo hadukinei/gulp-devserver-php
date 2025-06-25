@@ -16,7 +16,9 @@ import { server as phpServer, closeServer } from 'gulp-devserver-php'
 
 // Serve PHP
 const task_serve = done => {
-  phpServer({}, () => {
+  phpServer({
+    //debug: true,
+  }, () => {
     closeServer()
   })
 
