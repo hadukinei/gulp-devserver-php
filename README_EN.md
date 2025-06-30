@@ -5,11 +5,9 @@
 |[<img width="24" height="24" align="left" src="README.img/1f1ef-1f1f5.png" alt="🇯🇵"> 日本語](README.md)|[<img width="24" height="24" align="left" src="README.img/1f1fa-1f1f8.png" alt="🇺🇸"> English](README_EN.md)|
 
 
-## Revision: in v1.1.0
+## Revision: in v1.1.1
 
-- Change a default value of stdio to "pipe".
-- Change output styles.
-- Add dependency: [chalk](https://github.com/chalk/chalk)
+- Add type definition (export declare) in `index.d.ts`.
 
 
 ---
@@ -32,7 +30,7 @@ But replacing dependency which have any security troubles positively.
 ## Indexes
 
 - [gulp-devserver-php](#gulp-devserver-php)
-  - [Revision: in v1.1.0](#revision-in-v110)
+  - [Revision: in v1.1.1](#revision-in-v111)
   - [Indexes](#indexes)
   - [Features](#features)
   - [Web development with using gulpfile.mjs only](#web-development-with-using-gulpfilemjs-only)
