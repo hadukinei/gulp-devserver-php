@@ -5,10 +5,10 @@
 |[<img width="24" height="24" align="left" src="README.img/1f1ef-1f1f5.png" alt="🇯🇵"> 日本語](README.md)|[<img width="24" height="24" align="left" src="README.img/1f1fa-1f1f8.png" alt="🇺🇸"> English](README_EN.md)|
 
 
-## 更新点: v1.1.2
+## 更新点: v1.2.0
 
-- `index.d.ts`に型定義（export declare）を追加
-- test/*の`gulp-devserver-php`パッケージのバージョンを最新に
+- `index.d.ts`に型定義（export declare）を追加,
+- optionの定義を確定
 
 
 ---
@@ -29,7 +29,7 @@
 ## 目次
 
 - [gulp-devserver-php](#gulp-devserver-php)
-  - [更新点: v1.1.2](#更新点-v112)
+  - [更新点: v1.2.0](#更新点-v120)
   - [目次](#目次)
   - [特徴](#特徴)
   - [gulpfile.mjs単体での利用](#gulpfilemjs単体での利用)
