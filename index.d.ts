@@ -9,10 +9,7 @@ declare module "binary-version-check" {
   export default binaryVersionCheck
 }
 
-// declare exports
-/**
- * gulp-devserver-php options
- */
+// declare module "gulp-devserver-php"
 interface GulpDevServerPhpOption extends object {
   /**
    * gulp-devserver-php options: port
@@ -81,26 +78,26 @@ interface GulpDevServerPhpOption extends object {
 
   /**
    * gulp-devserver-php options which inherited from gulp-connect-php: configCallback
-   * @param {function (type, collection) | undefined} configCallback - [Optional] STDIO parameter of the `Node.js`.
+   * @param {function (type, collection): void | undefined} configCallback - [Optional] STDIO parameter of the `Node.js`.
    * @argument {string} type - OPTIONS_SPAWN_OBJ or OPTIONS_PHP_CLI_ARR
    * @argument {array<any> | object} collection - initial version of the collection specified by `type`
    * @return collection - modified collection
    */
-  configCallback?: function
+  configCallback?: () => null
 }
 
 /**
  * Open PHP process
  * @param {GulpDevServerPhpOption} options - [Optional] PHP options
- * @param {function} cb - [Optional] Callback function
+ * @param {function (): null} cb - [Optional] Callback function
  */
-export declare async function server(options?: GulpDevServerPhpOption, cb?: function): null
+export declare async function server(options?: GulpDevServerPhpOption, cb?: () => null): null
 
 /**
  * Close PHP process
- * @param {function} cb - [Optional] Callback function
+ * @param {function (): null} cb - [Optional] Callback function
  */
-export declare function closeServer(cb?: function): null
+export declare function closeServer(cb?: () => null): null
 
 /**
  * Get a current port number of internal server

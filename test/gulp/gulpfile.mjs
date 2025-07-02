@@ -80,23 +80,21 @@ const task_watch = done => {
 // Server
 const task_server = done => {
   if(isPHP){
-    let options = {
-      base: 'dist',
-      //debug: true,
-
-      // Changing PHP version, set path to .exe and .ini directly
-      //bin: "C:/php7.4.13/php.exe",
-      //ini: "C:/php7.4.13/php.ini",
-
-      // When using WAMP, does not registered PHP path in Environmental values
-      // And also using in Mac too
-      // Set path to .exe and .ini directly
-      //bin: 'C:/wamp64/bin/php/php8.3.14/php.exe',
-      //ini: 'C:/wamp64/bin/php/php8.3.14/php.ini',
-    }
-
     phpServer(
-      options,
+      {
+        base: 'dist',
+        //debug: true,
+
+        // Changing PHP version, set path to .exe and .ini directly
+        //bin: "C:/php7.4.13/php.exe",
+        //ini: "C:/php7.4.13/php.ini",
+
+        // When using WAMP, does not registered PHP path in Environmental values
+        // And also using in Mac too
+        // Set path to .exe and .ini directly
+        //bin: 'C:/wamp64/bin/php/php8.3.14/php.exe',
+        //ini: 'C:/wamp64/bin/php/php8.3.14/php.ini',
+      },
       () => {
         browserSync.init({
           proxy: 'localhost:8000',

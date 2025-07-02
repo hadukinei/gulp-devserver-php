@@ -5,10 +5,10 @@
 |[<img width="24" height="24" align="left" src="README.img/1f1ef-1f1f5.png" alt="🇯🇵"> 日本語](README.md)|[<img width="24" height="24" align="left" src="README.img/1f1fa-1f1f8.png" alt="🇺🇸"> English](README_EN.md)|
 
 
-## Revision: in v1.2.1
+## Revision: in v1.2.2
 
-- Add type definition (export declare) in `index.d.ts`.
-- Fix definitions of option values.
+- Add and Modify type definition (export declare) in `index.d.ts`.
+- Change option value for what designate it directly to refer to type definition.
 
 
 ---
@@ -31,7 +31,7 @@ But replacing dependency which have any security troubles positively.
 ## Indexes
 
 - [gulp-devserver-php](#gulp-devserver-php)
-  - [Revision: in v1.2.1](#revision-in-v121)
+  - [Revision: in v1.2.2](#revision-in-v122)
   - [Indexes](#indexes)
   - [Features](#features)
   - [Web development with using gulpfile.mjs only](#web-development-with-using-gulpfilemjs-only)
