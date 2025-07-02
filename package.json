@@ -1,6 +1,6 @@
 {
   "name": "gulp-devserver-php",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "index.mjs",
   "type": "module",
   "author": "hadukinei",
@@ -25,5 +25,19 @@
     "chalk": "^5.4.1",
     "fs-extra": "^11.3.0",
     "open": "^10.1.2"
-  }
+  },
+  "licenses": [
+    {
+      "type": "ISC",
+      "url": "https://github.com/hadukinei/gulp-devserver-php",
+      "author": "hadukinei",
+      "description": "This package is publishing within ISC license."
+    },
+    {
+      "type": "MIT",
+      "url": "https://github.com/micahblu/gulp-connect-php",
+      "author": "micahblu",
+      "description": "Display copyrights by original package in MIT license."
+    }
+  ]
 }
