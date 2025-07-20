@@ -86,8 +86,8 @@ const task_server = done => {
         //debug: true,
 
         // Changing PHP version, set path to .exe and .ini directly
-        //bin: "C:/php7.4.13/php.exe",
-        //ini: "C:/php7.4.13/php.ini",
+        bin: "D:/php-8.4.10/php.exe",
+        ini: "D:/php-8.4.10/php.ini",
 
         // When using WAMP, does not registered PHP path in Environmental values
         // And also using in Mac too

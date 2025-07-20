@@ -18,6 +18,8 @@ import { server as phpServer, closeServer } from 'gulp-devserver-php'
 const task_serve = done => {
   phpServer({
     //debug: true,
+    bin: "D:/php-8.4.10/php.exe",
+    ini: "D:/php-8.4.10/php.ini",
   }, () => {
     closeServer()
   })
