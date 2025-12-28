@@ -5,11 +5,10 @@
 |[<img width="24" height="24" align="left" src="README.img/1f1ef-1f1f5.png" alt="🇯🇵"> 日本語](README.md)|[<img width="24" height="24" align="left" src="README.img/1f1fa-1f1f8.png" alt="🇺🇸"> English](README_EN.md)|
 
 
-## Revision: in v1.2.4
+## Revision: in v1.2.6
 
-- Add and Modify type definition (export declare) in `index.d.ts`.
-- Change option value for what designate it directly to refer to type definition.
-- Add license displaying including original package -- `gulp-connect-php`.
+- 依存パッケージの更新
+- Fix to deal with a renewal workflows on npmjs.com.
 
 
 ---
@@ -32,7 +31,7 @@ But replacing dependency which have any security troubles positively.
 ## Indexes
 
 - [gulp-devserver-php](#gulp-devserver-php)
-  - [Revision: in v1.2.4](#revision-in-v124)
+  - [Revision: in v1.2.6](#revision-in-v126)
   - [Indexes](#indexes)
   - [Features](#features)
   - [Web development with using gulpfile.mjs only](#web-development-with-using-gulpfilemjs-only)
